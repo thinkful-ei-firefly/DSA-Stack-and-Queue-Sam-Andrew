@@ -20,6 +20,36 @@ class Stack {
     return node.value;
   }
 }
+// A B C D E top
+// E D C B A -> A
+// B C D E
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.stack = new Stack
+  }
+  enqueue(data) {
+    if (!this.first) {
+      this.first = data
+    }
+    this.stack.push(data)
+    this.last = data
+  }
+  dequeue() {
+    let stack = this.stack
+    let tempStack = new Stack
+    while (stack.top !== null) {
+      tempStack.push(stack.pop())
+    }
+    const removed = tempStack.pop()
+    this.first = tempStack.top.value
+    while (tempStack.top !== null) {
+      stack.push(tempStack.pop())
+    }
+    return removed
+  }
+}
 
 
 const peek = (stack) => {
@@ -142,6 +172,18 @@ const main = () => {
   //console.log(parenthMatch(testString))
   //console.log(parenthMatch(testString2))
   //console.log(parenthMatch(testString3))
+  const Q = new Queue
+  Q.enqueue('a')
+  Q.enqueue('b')
+  Q.enqueue('c')
+  Q.enqueue('d')
+  console.log('BEFORE DQ')
+  display(Q.stack)
+  Q.dequeue()
+  Q.dequeue()
+  console.log('AFTER DQ')
+  display(Q.stack)
+  console.log(Q)
 }
 
 main()
