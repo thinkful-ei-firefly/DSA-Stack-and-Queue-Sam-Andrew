@@ -1,5 +1,5 @@
 class _Node {
-  constructor(value, next) {
+  constructor(value, next = null) {
     this.value = value
     this.next = next;
   }
@@ -20,6 +20,7 @@ class Stack {
     return node.value;
   }
 }
+
 
 const peek = (stack) => {
   if (stack.top === null) return null
@@ -119,18 +120,14 @@ const main = () => {
   let testString = "Oh (hello) there"
   let testString2 = "(((()))"
   let testString3 = "((())))"
-
   stackToSort.push(100);
   stackToSort.push(1);
   stackToSort.push(99);
   stackToSort.push(2);
   stackToSort.push(98);
   stackToSort.push(-100);
-  console.log('unsorted')
-  display(stackToSort);
-  console.log('sorted')
-  display(stackSort(stackToSort))
-
+  //display(stackToSort);
+  //display(stackSort(stackToSort))
   // console.log(starTrek)
   // console.log(peek(starTrek))
   // console.log(peek(emptyStack))
@@ -145,8 +142,6 @@ const main = () => {
   //console.log(parenthMatch(testString))
   //console.log(parenthMatch(testString2))
   //console.log(parenthMatch(testString3))
-
-
 }
 
 main()
