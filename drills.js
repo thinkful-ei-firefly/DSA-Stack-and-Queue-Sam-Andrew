@@ -86,6 +86,13 @@ const parenthMatch = (s) => {
 
 }
 
+const sortStack = (iStack) => {
+  const oStack = new Stack;
+  
+
+  return oStack
+}
+
 const main = () => {
   const starTrek = new Stack;
   const emptyStack = new Stack;
@@ -95,7 +102,9 @@ const main = () => {
   starTrek.push('Scotty');
   starTrek.pop();
   starTrek.pop();
-
+  let testString = "Oh (hello) there"
+  let testString2 = "(((()))"
+  let testString3 = "((())))"
 
   // console.log(starTrek)
   // console.log(peek(starTrek))
@@ -108,9 +117,6 @@ const main = () => {
   //console.log(is_palindrome("A man, a plan, a canal: Panama"));
   //console.log(is_palindrome("1001"));
   //console.log(is_palindrome("Tauhida"));
-  //let testString = "Oh (hello) there"
-  //let testString2 = "(((()))"
-  //let testString3 = "((())))"
   //console.log(parenthMatch(testString))
   //console.log(parenthMatch(testString2))
   //console.log(parenthMatch(testString3))
