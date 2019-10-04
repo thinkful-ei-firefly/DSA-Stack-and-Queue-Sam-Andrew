@@ -20,30 +20,6 @@ class Stack {
   }
 }
 
-const main = () => {
-  const starTrek = new Stack();
-  const emptyStack = new Stack();
-  starTrek.push('Kirk');
-  starTrek.push('Spock');
-  starTrek.push('McCoy');
-  starTrek.push('Scotty');
-
-  starTrek.pop();
-  starTrek.pop();
-
-
-  // console.log(starTrek)
-
-  // console.log(peek(starTrek))
-  // console.log(peek(emptyStack))
-
-  // console.log(isEmpty(starTrek))
-  // console.log(isEmpty(emptyStack))
-
-  display(starTrek)
-  // display(emptyStack)
-}
-
 const peek = (stack) => {
   if (stack.top === null) return null
   return stack.top.value
@@ -53,7 +29,7 @@ const isEmpty = (stack) => {
   return !stack.top
 }
 
-const display = (stack)  => {
+const display = (stack) => {
   if (isEmpty(stack)) console.log('this stack is empty')
   let tempNode = stack.top
   while (tempNode !== null) {
@@ -66,21 +42,80 @@ const is_palindrome = (s) => {
   s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
   const stack = new Stack
   const reverseStack = new Stack
-  for (let i=0; i<s.length; i++) {
+  for (let i = 0; i < s.length; i++) {
     stack.push(s[i])
   }
-  for (let i=0; i<s.length; i++) {
-    reverseStack.push(s[s.length-1-i])
+  for (let i = 0; i < s.length; i++) {
+    reverseStack.push(s[s.length - 1 - i])
   }
-  for (let i=0; i<s.length; i++) {
+  for (let i = 0; i < s.length; i++) {
     if (stack.pop() !== reverseStack.pop()) return false
   }
   return true;
 }
 
-console.log(is_palindrome("dad"));
-console.log(is_palindrome("A man, a plan, a canal: Panama"));
-console.log(is_palindrome("1001"));
-console.log(is_palindrome("Tauhida"));
+const parenthMatch = (s) => {
+  const stack = new Stack
+  let stackLength = 0
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == '(' || s[i] == ')') {
+      stack.push(s[i])
+      stackLength++
+    }
+  }
+  let tempStack = stack;
+  let isOpen = 0;
+  for (let i = 0; i < stackLength; i++) {
+    let thisPop = tempStack.pop()
+    if (thisPop == ')') {
+      isOpen--
+    }
+    else if (thisPop == '(') {
+      isOpen++
+    }
+  }
+  if (isOpen > 0) {
+    return "Missing a ')'"
+  }
+  else if (isOpen < 0) {
+    return "Missing a '('"
+  }
+  else {
+    return "Ok"
+  }
 
-// main()
+}
+
+const main = () => {
+  const starTrek = new Stack;
+  const emptyStack = new Stack;
+  starTrek.push('Kirk');
+  starTrek.push('Spock');
+  starTrek.push('McCoy');
+  starTrek.push('Scotty');
+  starTrek.pop();
+  starTrek.pop();
+
+
+  // console.log(starTrek)
+  // console.log(peek(starTrek))
+  // console.log(peek(emptyStack))
+  // console.log(isEmpty(starTrek))
+  // console.log(isEmpty(emptyStack))
+  //display(starTrek)
+  // display(emptyStack)
+  //console.log(is_palindrome("dad"));
+  //console.log(is_palindrome("A man, a plan, a canal: Panama"));
+  //console.log(is_palindrome("1001"));
+  //console.log(is_palindrome("Tauhida"));
+  //let testString = "Oh (hello) there"
+  //let testString2 = "(((()))"
+  //let testString3 = "((())))"
+  //console.log(parenthMatch(testString))
+  //console.log(parenthMatch(testString2))
+  //console.log(parenthMatch(testString3))
+
+
+}
+
+main()
