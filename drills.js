@@ -14,6 +14,7 @@ class Stack {
     this.top = node
   }
   pop() {
+    if (this.top === null) return null
     const node = this.top;
     this.top = node.next;
     return node.value;
@@ -86,16 +87,29 @@ const parenthMatch = (s) => {
 
 }
 
-const sortStack = (iStack) => {
-  const oStack = new Stack;
-  
-
-  return oStack
+const stackSort = (stack) => {
+  let tempStack = new Stack
+  let sourcePop = stack.pop()
+  while (sourcePop) {
+    if (peek(tempStack) <= sourcePop || isEmpty(tempStack)) {
+      tempStack.push(sourcePop)
+      sourcePop = stack.pop()
+    }
+    else {
+      stack.push(tempStack.pop())
+    }
+  }
+  while (!isEmpty(tempStack)) {
+    stack.push(tempStack.pop())
+  }
+  // stack.push(sourcePop)
+  return stack
 }
 
 const main = () => {
   const starTrek = new Stack;
   const emptyStack = new Stack;
+  const stackToSort = new Stack;
   starTrek.push('Kirk');
   starTrek.push('Spock');
   starTrek.push('McCoy');
@@ -105,6 +119,17 @@ const main = () => {
   let testString = "Oh (hello) there"
   let testString2 = "(((()))"
   let testString3 = "((())))"
+
+  stackToSort.push(100);
+  stackToSort.push(1);
+  stackToSort.push(99);
+  stackToSort.push(2);
+  stackToSort.push(98);
+  stackToSort.push(-100);
+  console.log('unsorted')
+  display(stackToSort);
+  console.log('sorted')
+  display(stackSort(stackToSort))
 
   // console.log(starTrek)
   // console.log(peek(starTrek))
